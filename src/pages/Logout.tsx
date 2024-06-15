@@ -6,5 +6,5 @@ export default function Logout() {
 
     navigate("/");
     })
-    return(<>Logging out</>)
+    return(<></>)
 }
