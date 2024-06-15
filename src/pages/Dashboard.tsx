@@ -10,7 +10,7 @@ import GuestDashboard from "./GuestDashboard";
 import { isLoggedIn } from "../utils/auth";
 
 const Dashboard: React.FC = () => {
-    if (!isLoggedIn) {
+    if (!isLoggedIn()) {
         return <GuestDashboard />;
     }
     let user = JSON.parse(localStorage.getItem("user") || "{}");

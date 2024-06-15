@@ -94,8 +94,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     };
 
     const logout = () => {
+        console.log("trying to log out")
         setIsLoggedIn(false);
         setUserType(null);
+        saveUser(null)
         setUser(null);
     };
 
