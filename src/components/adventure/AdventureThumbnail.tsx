@@ -1,9 +1,12 @@
 import { Card, CardContent } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { Adventure } from "../../data/interfaces";
 
+interface AdventureThumbnailProps {
+    name:string;
+    description:string;
+}
 
-export default function AdventureThumbnail(props: Adventure) {
+export default function AdventureThumbnail(props: AdventureThumbnailProps) {
     return (
         <Card>
             <CardContent>

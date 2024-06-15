@@ -16,7 +16,7 @@ export default function Navbar() {
     return (
         <ButtonGroup sx={{justifyContent:"center"}} spacing="2rem">
             {buttonData.map((data: ButtonData) => (
-                <Button
+                <Button key={data.label}
                     sx={{
                         color: theme.colors.primary,
                         borderColor: theme.colors.primary,

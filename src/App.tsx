@@ -6,16 +6,33 @@ import { BrowserRouter } from "react-router-dom";
 import Leaderboard from "./pages/Leaderboard";
 import BattleArena from "./pages/BattleArena";
 import Market from "./pages/Market";
+import ViewAdventures from "./pages/ViewAdventures";
+import { Adventure } from "./pages/Adventure";
+import { AuthProvider } from "./features/auth/authContext";
+import Login from "./components/auth/Login";
 
 function App() {
     return (
         <BrowserRouter>
             <Layout>
                 <Routes>
-                    <Route path="/" element={<Dashboard />} />
+                    <Route
+                        path="/"
+                        element={
+                            <AuthProvider>
+                                <Dashboard />
+                            </AuthProvider>
+                        }
+                    />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/arena" element={<BattleArena />} />
+                    <Route
+                        path="/adventures"
+                        element={<ViewAdventures></ViewAdventures>}
+                    />
                     <Route path="/market" element={<Market />} />
+                    <Route path="/adventure/:id" element={<Adventure />} />
+                    <Route path="/login" element={<AuthProvider><Login/></AuthProvider>} />
                 </Routes>
             </Layout>
         </BrowserRouter>
