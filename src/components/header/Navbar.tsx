@@ -9,9 +9,9 @@ interface ButtonData {
 
 export default function Navbar() {
     let buttonData: ButtonData[] = [
-        { label: "Leaderboard", url: "Leaderboard.tsx" },
-        { label: "Battle Arena", url: "Arena.tsx" },
-        { label: "Market", url: "Market.tsx" },
+        { label: "Leaderboard", url: "/leaderboard" },
+        { label: "Battle Arena", url: "/arena" },
+        { label: "Market", url: "/market" },
     ];
     return (
         <ButtonGroup sx={{justifyContent:"center"}} spacing="2rem">

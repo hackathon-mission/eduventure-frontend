@@ -1,36 +1,19 @@
 // src/Login.tsx
 import React, { useState } from "react";
 import { Container, TextField, Button, Typography, Box } from "@mui/material";
-import { Teacher, User } from "../../data/interfaces";
-
 import { useAuth } from "../../features/auth/authContext";
 import { theme } from "../../data/theme";
+
 const Login: React.FC = () => {
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>(""); // Password is not used in the API, but might be needed for further implementation
     const { loginAsTeacher, loginAsStudent } = useAuth();
 
     const handleLogin = (userType: "teacher" | "student") => {
-        // Mock user data for demonstration purposes
         if (userType === "teacher") {
-            const teacher: Teacher = {
-                username: "teacherUser",
-                realname: "John Doe",
-                pronouns: "he/him",
-                avatar: null,
-                adventures: [],
-            };
-            loginAsTeacher(teacher);
+            loginAsTeacher(username);
         } else {
-            const student: User = {
-                username: "studentUser",
-                pronouns: "they/them",
-                xp: 100,
-                avatar: null,
-                presented_items: [],
-                user_adventures: [],
-            };
-            loginAsStudent(student);
+            loginAsStudent(username);
         }
     };
 
@@ -51,8 +34,8 @@ const Login: React.FC = () => {
                     variant="outlined"
                     margin="normal"
                     fullWidth
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
                 <TextField
                     label="Password"

@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActionsProps } from "@mui/material";
 import Link from "@mui/joy/Link";
 
-export default function NewAdventureButton(props: CardActionsProps) {
+export default function NewAdventureButton() {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
