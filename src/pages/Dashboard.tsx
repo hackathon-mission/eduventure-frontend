@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <>
-            <Button href={"/profile/" + user?._id}>Go to profile</Button>
+            <Button style={{ padding: "20px", borderColor: "hotpink", borderStyle: "solid", textDecoration: "none" }} href={"/profile/" + user?._id}>Go to profile</Button>
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {user.realname !== null ? (
                     <>
