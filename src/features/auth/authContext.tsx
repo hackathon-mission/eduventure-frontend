@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { redirect } from "react-router";
+import { useNavigate } from "react-router";
 
 interface Teacher {
     _id?: string;
@@ -40,6 +41,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [userType, setUserType] = useState<"teacher" | "student" | null>(null);
     const [user, setUser] = useState<Teacher | User | null>(null);
+    const navigate = useNavigate();
 
     const serverURL = "http://104.248.193.0:3000";
 
@@ -62,7 +64,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
                 setUserType("teacher");
                 setUser(teacher);
                 saveUser(teacher);
-                redirect("/");
+                navigate("/");
             } else {
                 console.error("Teacher not found");
             }
@@ -87,7 +89,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
                 setUserType("student");
                 saveUser(user);
                 setUser(user);
-                redirect("/");
+                navigate("/");
             } else {
                 console.error("User not found");
             }
@@ -102,7 +104,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         setUserType(null);
         saveUser(null);
         setUser(null);
-        redirect("/");
+        navigate("/");
     };
 
     return (
