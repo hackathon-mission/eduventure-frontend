@@ -104,7 +104,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         setUserType(null);
         saveUser(null);
         setUser(null);
-        navigate("/");
+        navigate("/logout");
     };
 
     return (

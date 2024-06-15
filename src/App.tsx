@@ -13,6 +13,7 @@ import Login from "./components/auth/Login";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import ListingDetails from "./pages/Listing";
+import Logout from "./pages/Logout";
 
 function App() {
     return (
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/adventure/:id" element={<Adventure />} />
                     <Route path="/profile/:userID" element={<Profile />} />
                     <Route path="/listing/:id" element={<ListingDetails/>} />
+                    <Route path="/logout" element={<Logout/>}/>
                     <Route
                         path="/login"
                         element={

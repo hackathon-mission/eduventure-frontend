@@ -3,11 +3,13 @@ import { Button, Container, Typography, Box } from "@mui/material";
 import { useAuth } from "../features/auth/authContext";
 import { theme } from "../data/theme";
 import { redirect } from "react-router-dom";
+import { isLoggedIn } from "../utils/auth";
+import { useNavigate } from "react-router-dom";
 
 const GuestDashboard: React.FC = () => {
-    const { isLoggedIn, userType, user } = useAuth();
-    if (isLoggedIn) {
-        redirect("/");
+    const navigate = useNavigate()
+    if (isLoggedIn()) {
+        navigate("/");
     }
 
     return (

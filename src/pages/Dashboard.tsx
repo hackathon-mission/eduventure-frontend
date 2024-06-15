@@ -8,18 +8,16 @@ import { theme } from "../data/theme";
 import { useAuth } from "../features/auth/authContext";
 import GuestDashboard from "./GuestDashboard";
 import { isLoggedIn } from "../utils/auth";
+import { User, Teacher } from "../data/interfaces";
 
 const Dashboard: React.FC = () => {
-    if (!isLoggedIn()) {
-        return <GuestDashboard />;
-    }
-    let user = JSON.parse(localStorage.getItem("user") || "{}");
+    let user: User | Teacher = JSON.parse(localStorage.getItem("user") || "{}");
 
-    return (
+    return isLoggedIn() ? (
         <>
             <Button href={"/profile/" + user?._id}>Go to profile</Button>
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {user.realname !== null ? (
+                {(user as Teacher).realname ? (
                     <>
                         <Paper style={{ padding: "2rem" }}>
                             Welcome, {user?.username} (Teacher)
@@ -39,6 +37,8 @@ const Dashboard: React.FC = () => {
                 )}
             </div>
         </>
+    ) : (
+        <GuestDashboard />
     );
 };
 
