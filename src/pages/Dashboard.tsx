@@ -7,10 +7,8 @@ import NewAdventureButton from "../components/dashboard/NewAdventureButton";
 import { theme } from "../data/theme";
 import { useAuth } from "../features/auth/authContext";
 import GuestDashboard from "./GuestDashboard";
+import { isLoggedIn } from "../utils/auth";
 
-function isLoggedIn(): boolean {
-    return localStorage.getItem("user") != null;
-}
 const Dashboard: React.FC = () => {
     if (!isLoggedIn) {
         return <GuestDashboard />;
