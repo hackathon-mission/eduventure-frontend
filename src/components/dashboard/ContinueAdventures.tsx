@@ -31,6 +31,7 @@ export default function ContinueAdventures() {
             {adventures.map((adventure) => (
                 <div
                     style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+                    key={adventure._id.toString()}
                 >
                     <AdventureThumbnail
                         name={adventure.name}

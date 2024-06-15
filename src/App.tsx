@@ -10,6 +10,9 @@ import ViewAdventures from "./pages/ViewAdventures";
 import { Adventure } from "./pages/Adventure";
 import { AuthProvider } from "./features/auth/authContext";
 import Login from "./components/auth/Login";
+import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
+import ListingDetails from "./pages/Listing";
 
 function App() {
     return (
@@ -32,7 +35,17 @@ function App() {
                     />
                     <Route path="/market" element={<Market />} />
                     <Route path="/adventure/:id" element={<Adventure />} />
-                    <Route path="/login" element={<AuthProvider><Login/></AuthProvider>} />
+                    <Route path="/profile/:userID" element={<Profile />} />
+                    <Route path="/listing/:id" element={<ListingDetails/>} />
+                    <Route
+                        path="/login"
+                        element={
+                            <AuthProvider>
+                                <Login />
+                            </AuthProvider>
+                        }
+                    />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </Layout>
         </BrowserRouter>
