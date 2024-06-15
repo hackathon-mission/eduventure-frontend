@@ -74,10 +74,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       });
       
       if (response.ok) {
-        const userId = await response.text();
-        // Fetch the user data using the userId
-        const userResponse = await fetch(`/users/${userId}`);
-        const user: User = await userResponse.json();
+        const user: User = await response.json();
         setIsLoggedIn(true);
         setUserType('student');
         setUser(user);
