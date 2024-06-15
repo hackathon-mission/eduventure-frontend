@@ -15,14 +15,14 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 export function Profile() {
-    const { userID } = useParams();
-    console.log(userID)
+    const { id } = useParams();
+    console.log(id)
     console.log("  ")
     const navigate = useNavigate();
     const [user, setUser] = useState<User | Teacher | null>(null);
 
     useEffect(() => {
-        fetch(`${serverUrl}/user/${userID}`)
+        fetch(`${serverUrl}/user/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data) {
@@ -34,7 +34,7 @@ export function Profile() {
             .catch(() => {
                 navigate("/notFound");
             });
-    }, [userID, navigate]);
+    }, [id, navigate]);
 
     if (user === null) {
         return <NotFound />;

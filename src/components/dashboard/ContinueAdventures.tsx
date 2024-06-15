@@ -6,7 +6,7 @@ import AdventureThumbnail from "../adventure/AdventureThumbnail";
 import { theme } from "../../data/theme";
 import { Link } from "react-router-dom";
 export default function ContinueAdventures() {
-    const adventures: Adventure[] = [
+   /* const adventures: Adventure[] = [
         {
             _id: new ObjectId(),
             chapters: [new ObjectId()],
@@ -25,9 +25,10 @@ export default function ContinueAdventures() {
             name: "Adventure 3",
             description: "very adventure",
         },
-    ];
+    ];*/
     return (
-        <Stack direction="row" spacing="2rem" justifyContent="space-between">
+        <></>
+        /*<Stack direction="row" spacing="2rem" justifyContent="space-between">
             {adventures.map((adventure) => (
                 <div
                     style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
@@ -50,6 +51,6 @@ export default function ContinueAdventures() {
                     </Link>
                 </div>
             ))}
-        </Stack>
+        </Stack>*/
     );
 }

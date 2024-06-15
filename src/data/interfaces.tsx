@@ -6,12 +6,6 @@ export interface Item {
     type: string;
 }
 
-export interface Adventure {
-    _id: ObjectId;
-    chapters: ObjectId[];
-    description: string;
-    name: string;
-}
 export interface UserAdventure {
     _id: ObjectId;
     base_adventure_id: ObjectId;
@@ -34,6 +28,17 @@ export interface User {
     items: ObjectId[];
     presented_items: Item[];
     user_adventures: UserAdventure[];
+}
+export interface Adventure {
+    _id: ObjectId;
+    chapters: Chapter[];
+    description: string;
+    name: string;
+}
+interface Chapter {
+    _id?: ObjectId;
+    links: Link[];
+    description: string;
 }
 
 export interface Listing {

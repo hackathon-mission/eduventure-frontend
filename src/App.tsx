@@ -36,7 +36,7 @@ function App() {
                     />
                     <Route path="/market" element={<Market />} />
                     <Route path="/adventure/:id" element={<Adventure />} />
-                    <Route path="/profile/:userID" element={<Profile />} />
+                    <Route path="/profile/:id" element={<Profile />} />
                     <Route path="/listing/:id" element={<ListingDetails/>} />
                     <Route path="/logout" element={<Logout/>}/>
                     <Route
