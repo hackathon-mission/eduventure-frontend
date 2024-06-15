@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
+import { redirect } from "react-router";
 
 interface Teacher {
     _id?: string;
@@ -61,6 +62,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
                 setUserType("teacher");
                 setUser(teacher);
                 saveUser(teacher);
+                redirect("/");
             } else {
                 console.error("Teacher not found");
             }
@@ -85,6 +87,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
                 setUserType("student");
                 saveUser(user);
                 setUser(user);
+                redirect("/");
             } else {
                 console.error("User not found");
             }
@@ -94,11 +97,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     };
 
     const logout = () => {
-        console.log("trying to log out")
+        console.log("trying to log out");
         setIsLoggedIn(false);
         setUserType(null);
-        saveUser(null)
+        saveUser(null);
         setUser(null);
+        redirect("/");
     };
 
     return (
