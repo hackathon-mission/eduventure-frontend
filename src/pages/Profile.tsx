@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { ObjectId } from "mongodb";
 import { useParams, useNavigate } from "react-router-dom";
 import { User, Teacher, Item } from "../data/interfaces";
-import { Avatar, Box, Typography, Grid, Paper } from "@mui/material";
+import { Avatar, Box, Typography, Grid, Paper, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import NotFound from "./NotFound";
 import { serverUrl } from "../data/consts";
@@ -82,6 +82,7 @@ export function Profile() {
                         <Typography variant="h5" gutterBottom>
                             {user.username}
                         </Typography>
+                        <Button href={"/changeAvatar"}>change avatar</Button>
                         <Typography variant="subtitle1">{user.pronouns}</Typography>
                     </StyledPaper>
                 </Grid>
