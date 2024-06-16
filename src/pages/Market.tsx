@@ -27,6 +27,7 @@ const Market: React.FC = () => {
       <Typography variant="h4" gutterBottom>
         Marketplace
       </Typography>
+      <Button href="/addListing">Add listing</Button>
       <Grid container spacing={2}>
         {listings.map((listing) => (
           <Grid item xs={12} md={4} key={listing._id.toString()}>
