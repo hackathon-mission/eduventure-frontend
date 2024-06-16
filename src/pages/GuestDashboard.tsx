@@ -44,6 +44,7 @@ const GuestDashboard: React.FC = () => {
                             color: theme.colors.primary,
                             borderColor: theme.colors.primary,
                         }}
+                        href="/register"
                     >
                         Create Account
                     </Button>

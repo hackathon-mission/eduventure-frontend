@@ -16,6 +16,7 @@ import ListingDetails from "./pages/Listing";
 import Logout from "./pages/Logout";
 import AddListing from "./pages/AddListing";
 import ChangeAvatar from "./pages/ChangeAvatar";
+import Register from "./components/auth/Register";
 
 function App() {
     return (
@@ -49,6 +50,12 @@ function App() {
                             <AuthProvider>
                                 <Login />
                             </AuthProvider>
+                        }
+                    />
+                    <Route
+                        path="/register"
+                        element={
+                                <Register/>
                         }
                     />
                     <Route path="*" element={<NotFound />} />

@@ -56,10 +56,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
             });
 
             if (response.ok) {
-                const userId = await response.text();
                 // Fetch the teacher data using the userId
-                const teacherResponse = await fetch(serverURL + `/teachers/${userId}`);
-                const teacher: Teacher = await teacherResponse.json();
+                const teacher: Teacher = await response.json();
                 setIsLoggedIn(true);
                 setUserType("teacher");
                 setUser(teacher);
