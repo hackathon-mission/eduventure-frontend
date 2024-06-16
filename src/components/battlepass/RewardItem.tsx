@@ -25,6 +25,7 @@ const RewardItem: React.FC<RewardItemProps> = ({
         backgroundColor: isUnlocked ? theme.colors.secondary : "white",
         maxWidth: "250px",
         flexShrink: "0",
+        paddingX: "1rem"
       }}
     >
       <Typography variant="h6">Level {level}</Typography>
