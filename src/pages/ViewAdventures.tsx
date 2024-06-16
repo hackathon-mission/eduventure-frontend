@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { Adventure } from "../data/interfaces";
 import AdventureThumbnail from "../components/adventure/AdventureThumbnail";
 import { serverUrl } from "../data/consts";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { User } from "../data/interfaces";
 
 export default function ViewAdventures() {
+    let user: User = JSON.parse(localStorage.getItem("user") || "{}");
+
     const [adventures, setAdventures] = useState<Adventure[]>([]);
     useEffect(() => {
         fetch(`${serverUrl}/adventures`)
@@ -19,7 +22,20 @@ export default function ViewAdventures() {
     return (
         <Box display={"flex"} flexDirection={"column"} alignItems={'center'}>
             {adventures.map((adventure) => (
-                <AdventureThumbnail key={adventure._id.toString()} name={adventure.name} description={adventure.description}></AdventureThumbnail>
-            ))}
-        </Box>);
+                <Box display={"flex"}>
+                    <AdventureThumbnail key={adventure._id.toString()} name={adventure.name} description={adventure.description}></AdventureThumbnail>
+                    <Button
+                        onClick={() => {
+                            fetch(`${serverUrl}/user/${user._id.toString()}/join_adventure/${adventure._id.toString()}`, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                }
+                            }).then((res) => { if (res.status === 200) { alert("Adventure joined successfully") } else { alert("Failed to join adventure") } }).catch((err) => console.log(err));
+                        }}
+                    > Join adventure!</Button>
+                </Box>
+            ))
+            }
+        </Box >);
 }
