@@ -11,10 +11,10 @@ interface ButtonData {
 
 export default function Navbar() {
     let buttonData: ButtonData[] = [
+        { label: "Home", url: "/" },
         { label: "Leaderboard", url: "/leaderboard" },
         { label: "Battle Arena", url: "/arena" },
         { label: "Market", url: "/market" },
-        { label: "Home", url: "/" }
     ];
     const { logout } = useAuth();
     return (

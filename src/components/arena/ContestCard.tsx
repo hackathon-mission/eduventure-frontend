@@ -1,17 +1,24 @@
 import { Card, CardContent } from "@mui/joy";
-import { Typography } from "@mui/material";
+import { CardActionArea, Typography } from "@mui/material";
 
 export interface ContestProps {
     name: string;
     description: string;
     startDate: Date;
     endDate: Date;
-
 }
 
-export default function ConstestCard(props:ContestProps){
-    return (<Card sx={{maxWidth:"250px", flexShrink:"0"}}>
-
+export default function ConstestCard(props: ContestProps) {
+    return (
+        <Card
+            sx={{
+                maxWidth: "250px",
+                flexShrink: "0",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+            }}
+        >
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {props.name}
@@ -26,5 +33,9 @@ export default function ConstestCard(props:ContestProps){
                     {props.endDate.toDateString()}
                 </Typography>
             </CardContent>
-    </Card>)
+                <CardActionArea>
+                    <Card>Join now &gt;</Card>
+                </CardActionArea>
+        </Card>
+    );
 }
