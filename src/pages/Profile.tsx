@@ -1,6 +1,7 @@
 // src/components/Profile.tsx
 // src/components/Profile.tsx
 import React, { useEffect, useState } from "react";
+import { ObjectId } from "mongodb";
 import { useParams, useNavigate } from "react-router-dom";
 import { User, Teacher, Item } from "../data/interfaces";
 import { Avatar, Box, Typography, Grid, Paper } from "@mui/material";
@@ -11,7 +12,7 @@ import { serverUrl } from "../data/consts";
 const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary,
+    color: "black",
 }));
 
 export function Profile() {
@@ -20,6 +21,8 @@ export function Profile() {
     console.log("  ")
     const navigate = useNavigate();
     const [user, setUser] = useState<User | Teacher | null>(null);
+    const [avatar, setAvatar] = useState<Item | null>(null);
+    const [presentedItems, setPresentedItems] = useState<Item[]>([]);
 
     useEffect(() => {
         fetch(`${serverUrl}/user/${id}`)
@@ -36,6 +39,28 @@ export function Profile() {
             });
     }, [id, navigate]);
 
+    useEffect(() => {
+        if (user) {
+            fetch(`${serverUrl}/avatar/${id}`).then((res) => res.json()).then((data) => {
+                if (data) {
+                    setAvatar(data);
+                }
+            }).catch((err) => console.log(err));
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (user) {
+            (user as User).presented_items.map((item: ObjectId) => {
+                fetch(`${serverUrl}/item/${id}`).then((res) => res.json()).then((data) => {
+                    if (data) {
+                        setPresentedItems([...presentedItems, data]);
+                    }
+                }).catch((err) => console.log(err))
+            });
+        }
+    }, [user]);
+
     if (user === null) {
         return <NotFound />;
     }
@@ -43,6 +68,8 @@ export function Profile() {
     const isTeacher = (user: User | Teacher): user is Teacher => {
         return (user as Teacher).realname !== undefined;
     };
+
+    console.log(user);
 
     return (
         <Box sx={{ flexGrow: 1, p: 3 }}>
@@ -52,7 +79,7 @@ export function Profile() {
                         <Avatar
                             alt={user.username}
                             src={
-                                user.avatar?.img
+                                avatar?.img
                             }
                             sx={{ width: 128, height: 128, margin: "auto" }}
                         />
@@ -75,13 +102,13 @@ export function Profile() {
                             <>
                                 <Typography variant="h6">XP: {user.xp}</Typography>
                                 <Typography variant="body1">
-                                    Items: {user.items.length}
+                                    Items: 3
                                 </Typography>
                                 <Typography variant="h6" gutterBottom>
                                     Presented Items:
                                 </Typography>
                                 <Grid container spacing={2}>
-                                    {user.presented_items.map((item: Item) => (
+                                    {presentedItems.map((item: Item) => (
                                         <Grid item xs={4} key={item._id.toString()}>
                                             <img
                                                 src={item.img}

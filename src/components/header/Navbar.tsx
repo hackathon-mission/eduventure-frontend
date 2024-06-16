@@ -14,6 +14,7 @@ export default function Navbar() {
         { label: "Leaderboard", url: "/leaderboard" },
         { label: "Battle Arena", url: "/arena" },
         { label: "Market", url: "/market" },
+        { label: "Home", url: "/" }
     ];
     const { logout } = useAuth();
     return (

@@ -26,7 +26,7 @@ export interface User {
     xp: number;
     avatar: Item | null;
     items: ObjectId[];
-    presented_items: Item[];
+    presented_items: ObjectId[];
     user_adventures: UserAdventure[];
 }
 export interface Adventure {
@@ -42,18 +42,18 @@ interface Chapter {
 }
 
 export interface Listing {
-  _id: ObjectId;
-  name: string;
-  description: string;
-  item: ObjectId;
-  seller: ObjectId;
-  price: number;
+    _id: ObjectId;
+    name: string;
+    description: string;
+    item: ObjectId;
+    seller: ObjectId;
+    price: number;
 }
 
 
 export interface Link {
-  _id: ObjectId;
-  url: string;
-  name: string;
+    _id: ObjectId;
+    url: string;
+    name: string;
 }
 
