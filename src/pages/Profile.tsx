@@ -17,8 +17,6 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 
 export function Profile() {
     const { id } = useParams();
-    console.log(id)
-    console.log("  ")
     const navigate = useNavigate();
     const [user, setUser] = useState<User | Teacher | null>(null);
     const [avatar, setAvatar] = useState<Item | null>(null);
@@ -40,8 +38,8 @@ export function Profile() {
     }, [id, navigate]);
 
     useEffect(() => {
-        if (user) {
-            fetch(`${serverUrl}/avatar/${id}`).then((res) => res.json()).then((data) => {
+        if (user && user.avatar) {
+            fetch(`${serverUrl}/avatar/${user.avatar}`).then((res) => res.json()).then((data) => {
                 if (data) {
                     setAvatar(data);
                 }
@@ -69,8 +67,6 @@ export function Profile() {
         return (user as Teacher).realname !== undefined;
     };
 
-    console.log(user);
-
     return (
         <Box sx={{ flexGrow: 1, p: 3 }}>
             <Grid container spacing={2}>
@@ -79,7 +75,7 @@ export function Profile() {
                         <Avatar
                             alt={user.username}
                             src={
-                                avatar?.img
+                                "http://104.248.193.0:3000/" + avatar?.img
                             }
                             sx={{ width: 128, height: 128, margin: "auto" }}
                         />
