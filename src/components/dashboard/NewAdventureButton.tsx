@@ -6,11 +6,11 @@ import Link from "@mui/joy/Link";
 
 export default function NewAdventureButton() {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card>
             <CardActionArea>
                 <CardContent>
                     <Typography variant="h5" component="div">
-                        New learning path
+                        New adventure
                     </Typography>
                 </CardContent>
                 <CardContent>
@@ -26,6 +26,6 @@ export default function NewAdventureButton() {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-        </Card>
+        </Card >
     );
 }

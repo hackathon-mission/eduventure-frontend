@@ -2,13 +2,13 @@ import { Card, CardContent } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 interface AdventureThumbnailProps {
-    name:string;
-    description:string;
+    name: string;
+    description: string;
 }
 
 export default function AdventureThumbnail(props: AdventureThumbnailProps) {
     return (
-        <Card>
+        <Card sx={{ width: "500px", margin: "30px" }}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {props.name}

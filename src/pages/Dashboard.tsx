@@ -1,4 +1,5 @@
 import { Button } from "@mui/base";
+import { Box } from "@mui/material";
 import { Paper } from "@mui/material";
 import BattlePass from "../components/dashboard/BattlePass";
 import ContinueAdventures from "../components/dashboard/ContinueAdventures";
@@ -14,8 +15,8 @@ const Dashboard: React.FC = () => {
     let user: User | Teacher = JSON.parse(localStorage.getItem("user") || "{}");
 
     return isLoggedIn() ? (
-        <>
-            <Button href={"/profile/" + user?._id}>Go to profile</Button>
+        <Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={'center'}>
+            <Button style={{ margin: "20px 0px" }} href={"/profile/" + user?._id}>Go to profile</Button>
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {(user as Teacher).realname ? (
                     <>
@@ -36,7 +37,7 @@ const Dashboard: React.FC = () => {
                     </>
                 )}
             </div>
-        </>
+        </Box>
     ) : (
         <GuestDashboard />
     );
