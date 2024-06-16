@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { ObjectId } from "mongodb";
 import { useParams, useNavigate } from "react-router-dom";
-import { User, Teacher, Item } from "../data/interfaces";
+import { User, Teacher, Item, Adventure } from "../data/interfaces";
 import { Avatar, Box, Typography, Grid, Paper, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import NotFound from "./NotFound";
@@ -21,6 +21,7 @@ export function Profile() {
     const [user, setUser] = useState<User | Teacher | null>(null);
     const [avatar, setAvatar] = useState<Item | null>(null);
     const [presentedItems, setPresentedItems] = useState<Item[]>([]);
+    const [adventures, setAdventures] = useState<Adventure[]>([]);
 
     useEffect(() => {
         fetch(`${serverUrl}/user/${id}`)
@@ -63,65 +64,45 @@ export function Profile() {
         return <NotFound />;
     }
 
+    console.log(adventures)
+
     const isTeacher = (user: User | Teacher): user is Teacher => {
         return (user as Teacher).realname !== undefined;
     };
 
     return (
-        <Box sx={{ flexGrow: 1, p: 3 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={4}>
-                    <StyledPaper>
-                        <Avatar
-                            alt={user.username}
-                            src={
-                                "http://104.248.193.0:3000/" + avatar?.img
-                            }
-                            sx={{ width: 128, height: 128, margin: "auto" }}
-                        />
-                        <Typography variant="h5" gutterBottom>
-                            {user.username}
-                        </Typography>
-                        <Button href={"/changeAvatar"}>change avatar</Button>
-                        <Typography variant="subtitle1">{user.pronouns}</Typography>
-                    </StyledPaper>
-                </Grid>
-                <Grid item xs={12} md={8}>
-                    <StyledPaper>
-                        {isTeacher(user) ? (
-                            <>
-                                <Typography variant="h6">Real Name: {user.realname}</Typography>
-                                <Typography variant="body1">
-                                    Adventures: {user.adventures.length}
-                                </Typography>
-                            </>
-                        ) : (
-                            <>
-                                <Typography variant="h6">XP: {user.xp}</Typography>
-                                <Typography variant="body1">
-                                    Items: 3
-                                </Typography>
-                                <Typography variant="h6" gutterBottom>
-                                    Presented Items:
-                                </Typography>
-                                <Grid container spacing={2}>
-                                    {presentedItems.map((item: Item) => (
-                                        <Grid item xs={4} key={item._id.toString()}>
-                                            <img
-                                                src={item.img}
-                                                alt={item.name}
-                                                style={{ width: "100%" }}
-                                            />
-                                            <Typography variant="body2">{item.name}</Typography>
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                            </>
-                        )}
-                    </StyledPaper>
-                </Grid>
-            </Grid>
-        </Box>
+        <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
+            <Box display={"flex"} flexDirection={"column"} alignItems={"center"} marginTop={"30px"}>
+                <Avatar src={avatar ? `${serverUrl}/${avatar.img}` : ""} sx={{ width: 150, height: 150, margin: "auto", marginBottom: "20px" }} />
+                <Button
+                    onClick={() => {
+                        navigate("/changeAvatar");
+                    }}
+                >Change avatar</Button>
+                <Typography variant={"h4"}>{isTeacher(user) ? user.realname : user.username}</Typography>
+                <Typography variant={"h6"} color={"grey"}>{user.pronouns}</Typography>
+            </Box>
+            <Box marginTop={"70px"} display={"flex"} flexDirection={"row"} alignItems={"center"} justifyContent={"center"}>
+                {
+                    isTeacher(user) ? <Box display={"flex"} flexDirection={"column"} alignItems={"center"} height={"150px"} width={"250px"}>
+                        <Typography variant={"h6"}>Number of adventures</Typography>
+                        <Typography variant={"h3"} marginTop={"10px"}>{user.adventures.length}</Typography>
+                    </Box> : <Box display={"flex"} flexDirection={"column"} alignItems={"center"} height={"150px"} width={"250px"}>
+                        <Typography variant={"h6"}>Collected expierience</Typography>
+                        <Typography variant={"h3"} marginTop={"10px"}>{user.xp}</Typography>
+                    </Box>
+                }
+                {
+                    isTeacher(user) ? <></> : <Box display={"flex"} flexDirection={"column"} alignItems={"center"} height={"150px"} width={"250px"}>
+                        <Typography variant={"h6"}>Number of items</Typography>
+                        <Typography variant={"h3"} marginTop={"10px"}>{user.items.length}</Typography>
+                    </Box>
+                }
+            </Box>
+            {
+                isTeacher(user) ? <></> : <Button onClick={() => navigate(`/adventures`)}>Go to adventures</Button>
+            }
+        </Box >
     );
 };
 
