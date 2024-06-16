@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import ListingDetails from "./pages/Listing";
 import Logout from "./pages/Logout";
 import AddListing from "./pages/AddListing";
+import ChangeAvatar from "./pages/ChangeAvatar";
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                     <Route path="/listing/:id" element={<ListingDetails />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route path="/addListing" element={<AddListing />} />
+                    <Route path="/changeAvatar" element={<ChangeAvatar />} />
                     <Route
                         path="/login"
                         element={
