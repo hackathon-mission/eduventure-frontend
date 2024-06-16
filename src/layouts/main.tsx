@@ -17,10 +17,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         flexDirection: "column",
                         alignItems: "center",
                         height: "100vh",
+                        maxWidth:"80vw"
                     }}
                 >
                     <Navbar></Navbar>
-                    <main>{children}</main>
+                    <main style={{width:"100%"}}>{children}</main>
                 </div>
             </Container>
         </AuthProvider>
