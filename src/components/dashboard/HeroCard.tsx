@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { serverUrl } from "../../data/consts";
 import { User } from "../../data/interfaces";
 export default function HeroCard() {
-  let [users, setUsers] = useState<User[]>([]);
-  let userLocal: User = JSON.parse(localStorage.getItem("user") || "{}");
+  const [users, setUsers] = useState<User[]>([]);
+  const userLocal: User = JSON.parse(localStorage.getItem("user") || "{}");
   const [index, setIndex] = useState<number>(0);
 
   useEffect(() => {
@@ -16,10 +16,10 @@ export default function HeroCard() {
       .then((data) => {
         data.sort((a: User, b: User) => b.xp - a.xp);
         setUsers(data);
-        setIndex(users.findIndex((user) => user._id == userLocal._id) + 1);
+        setIndex(users.findIndex((user) => user.username== userLocal.username) + 1);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, );
   return (
     <Stack>
       <ProgressSummary
