@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
     let user: User | Teacher = JSON.parse(localStorage.getItem("user") || "{}");
 
     return isLoggedIn() ? (
-        <Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={'center'}>
+        <Box display={"flex"} width="100%" flexDirection={"column"} alignItems={"center"} justifyContent={'center'}>
             <Button style={{ margin: "20px 0px" }} href={"/profile/" + user?._id}>Go to profile</Button>
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {(user as Teacher).realname ? (

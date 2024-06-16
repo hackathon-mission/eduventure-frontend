@@ -9,7 +9,7 @@ interface AdventureThumbnailProps {
 
 export default function AdventureThumbnail(props: AdventureThumbnailProps) {
     return (
-        <Card sx={{ width: props.width, marginY: "30px" }}>
+        <Card sx={{ width: props.width, marginY: "30px"}}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {props.name}

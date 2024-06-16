@@ -1,5 +1,5 @@
 import Button from "@mui/joy/Button";
-import { maxWidth, Stack } from "@mui/system";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2" ;
 import { ObjectId } from "bson";
 import { Adventure, User, Teacher } from "../../data/interfaces";
 import AdventureThumbnail from "../adventure/AdventureThumbnail";
@@ -67,11 +67,14 @@ export default function ContinueAdventures() {
     }
 
     return (
-        <Stack direction="row" spacing="2rem" justifyContent="space-between">
+        <Grid2 container direction="row" spacing={2}>
             {adventures.map((adventure) => (
-                <div
-                    style={{ display: "flex", flexDirection: "column", gap: "0.5rem"  }}
+                <Grid2
+                    xs={12 / adventures.length}
+                    style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+                    sx-{...{justifyContent:"space-between"}}
                     key={adventure._id!.toString()}
+                    
                 >
                     <AdventureThumbnail
                         name={adventure.name}
@@ -89,8 +92,8 @@ export default function ContinueAdventures() {
                             Continue &gt;
                         </Button>
                     </Link>
-                </div>
+                </Grid2>
             ))}
-        </Stack>
+        </Grid2>
     );
 }

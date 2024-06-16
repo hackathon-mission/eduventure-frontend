@@ -4,6 +4,7 @@ import AdventureThumbnail from "../components/adventure/AdventureThumbnail";
 import { serverUrl } from "../data/consts";
 import { Box, Button } from "@mui/material";
 import { User } from "../data/interfaces";
+import { theme } from "../data/theme";
 
 export default function ViewAdventures() {
     let user: User = JSON.parse(localStorage.getItem("user") || "{}");
@@ -25,6 +26,8 @@ export default function ViewAdventures() {
                 <Box display={"flex"}>
                     <AdventureThumbnail width="40vw" key={adventure._id.toString()} name={adventure.name} description={adventure.description}></AdventureThumbnail>
                     <Button
+                        variant="contained"
+                        sx={{marginY:"30px", bgcolor:theme.colors.primary}}
                         onClick={() => {
                             fetch(`${serverUrl}/user/${user._id.toString()}/join_adventure/${adventure._id.toString()}`, {
                                 method: "POST",

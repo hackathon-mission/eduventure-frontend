@@ -16,7 +16,7 @@ export default function Leaderboard() {
     }, []);
 
     return (
-        <Box>
+        <Box display="flex" flexDirection="column" alignItems="center">
             <h1>Leaderboard</h1>
             <table>
                 <thead>
