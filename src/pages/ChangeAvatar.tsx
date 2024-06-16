@@ -15,9 +15,9 @@ export default function ChangeAvatar() {
 
     return (
         !user ? (<>Log in to change your avatar.</>) : (
-            <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
+            <Box display={"flex"} flexDirection={"row"} alignItems={"center"}justifyContent="space-between">
                 {items.map((item) => (
-                    <Box display={"flex"} flexDirection={"column"} alignItems={"center"} marginTop={"30px"} border={"solid 1px hotpink"} borderRadius={"5px"} padding={"40px"}>
+                    <Box display={"flex"} flexDirection={"column"} justifyContent="space-between" alignItems={"center"} marginTop={"30px"} border={"solid 1px hotpink"} borderRadius={"5px"} padding={"40px"}>
                         <Avatar src={`${serverUrl}/${item.img}`} sx={{ width: 128, height: 128, margin: "auto" }} />
                         <p>{item.name}</p>
                         <Button
