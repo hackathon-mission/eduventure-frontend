@@ -3,13 +3,14 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActionsProps } from "@mui/material";
 import Link from "@mui/joy/Link";
+import { theme } from "../../data/theme";
 
 export default function NewAdventureButton() {
     return (
         <Card>
             <CardActionArea>
                 <CardContent>
-                    <Typography variant="h5" component="div">
+                    <Typography variant="h5" component="div" sx={{color: theme.colors.primary}}>
                         New adventure
                     </Typography>
                 </CardContent>
