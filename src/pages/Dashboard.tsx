@@ -1,38 +1,71 @@
-import { Button } from "@mui/base";
+import Button from "@mui/joy/Button";
 import { Box } from "@mui/material";
 import { Paper } from "@mui/material";
 import BattlePass from "../components/dashboard/BattlePass";
 import ContinueAdventures from "../components/dashboard/ContinueAdventures";
 import HeroCard from "../components/dashboard/HeroCard";
 import NewAdventureButton from "../components/dashboard/NewAdventureButton";
-import { theme } from "../data/theme";
-import { useAuth } from "../features/auth/authContext";
 import GuestDashboard from "./GuestDashboard";
 import { isLoggedIn } from "../utils/auth";
-import { User, Teacher } from "../data/interfaces";
+import { User, Teacher, Item } from "../data/interfaces";
+import { useState, useEffect } from "react";
+import { serverUrl } from "../data/consts";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import { redirect } from "react-router";
+import { Link } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
-    let user: User | Teacher = JSON.parse(localStorage.getItem("user") || "{}");
+    let userLocal: User | Teacher = JSON.parse(localStorage.getItem("user") || "{}");
+    const [avatar, setAvatar] = useState<Item | null>(null);
+
+    useEffect(() => {
+        if (userLocal && userLocal.avatar) {
+            fetch(`${serverUrl}/avatar/${userLocal.avatar}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data) {
+                        setAvatar(data);
+                    }
+                })
+                .catch((err) => console.log(err));
+        }
+    }, []);
 
     return isLoggedIn() ? (
-        <Box display={"flex"} width="100%" flexDirection={"column"} alignItems={"center"} justifyContent={'center'}>
-            <Button style={{ margin: "20px 0px" }} href={"/profile/" + user?._id}>Go to profile</Button>
+        <Box
+            display={"flex"}
+            width="100%"
+            flexDirection={"column"}
+            alignItems={"center"}
+            justifyContent={"center"}
+        >
+            <Avatar
+                alt={userLocal.username}
+                src={"http://104.248.193.0:3000/" + avatar?.img}
+                sx={{ width: 128, height: 128, margin: "auto" }}
+            />
+            <Link to={"/profile/" + userLocal?._id}>
+                <Button variant="outlined" style={{ margin: "20px 0px" }}>
+                    {userLocal.username}
+                </Button>
+            </Link>
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {(user as Teacher).realname ? (
+                {(userLocal as Teacher).realname ? (
                     <>
                         <Paper style={{ padding: "2rem" }}>
-                            Welcome, {user?.username} (Teacher)
+                            Welcome, {userLocal?.username} (Teacher)
                             <HeroCard />
                         </Paper>
                     </>
                 ) : (
                     <>
-                        <NewAdventureButton />
                         <Paper style={{ padding: "2rem" }}>
-                            Welcome, {user?.username} (Student)
+                            Welcome, {userLocal?.username} (Student)
                             <HeroCard />
                             <BattlePass />
                         </Paper>
+                        <NewAdventureButton />
                         <ContinueAdventures />
                     </>
                 )}

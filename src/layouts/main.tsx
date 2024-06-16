@@ -9,7 +9,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <AuthProvider>
-            <Container style={{paddingTop:"2rem"}}>
+            <Container style={{paddingTop:"2rem", display: "flex" }} sx={{justifyContent:"center"}}>
                 <div
                     id="main-wrapper"
                     style={{
