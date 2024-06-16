@@ -16,7 +16,7 @@ export default function BattleArena() {
         });
     }, []);
     return (
-        <Box display={"flex"} flexDirection={"column"} alignItems={"center"} overflow="auto" width="100%">
+        <Box display={"flex"} flexDirection={"column"} gap="2rem" overflow="auto" width="100%">
             <Typography variant="h5" component="div">
                 Daily Contests
             </Typography>

@@ -9,7 +9,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <AuthProvider>
-            <Container>
+            <Container style={{paddingTop:"2rem"}}>
                 <div
                     id="main-wrapper"
                     style={{
@@ -17,7 +17,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         flexDirection: "column",
                         alignItems: "center",
                         height: "100vh",
-                        maxWidth:"80vw"
+                        maxWidth:"80vw",
+                        gap:"2rem"
                     }}
                 >
                     <Navbar></Navbar>

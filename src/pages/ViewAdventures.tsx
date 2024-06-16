@@ -23,7 +23,7 @@ export default function ViewAdventures() {
         <Box display={"flex"} flexDirection={"column"} alignItems={'center'}>
             {adventures.map((adventure) => (
                 <Box display={"flex"}>
-                    <AdventureThumbnail key={adventure._id.toString()} name={adventure.name} description={adventure.description}></AdventureThumbnail>
+                    <AdventureThumbnail width="40vw" key={adventure._id.toString()} name={adventure.name} description={adventure.description}></AdventureThumbnail>
                     <Button
                         onClick={() => {
                             fetch(`${serverUrl}/user/${user._id.toString()}/join_adventure/${adventure._id.toString()}`, {

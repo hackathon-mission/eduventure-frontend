@@ -19,7 +19,7 @@ const GuestDashboard: React.FC = () => {
                 flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
-                minHeight="100vh"
+                minHeight="60vh"
             >
                 <Typography textAlign="center" variant="h3" component="h1" gutterBottom>
                     Welcome to eduVENTURE

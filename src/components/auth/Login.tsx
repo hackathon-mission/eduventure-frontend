@@ -24,7 +24,7 @@ const Login: React.FC = () => {
                 flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
-                minHeight="100vh"
+                minHeight="60vh"
             >
                 <Typography variant="h4" component="h1" gutterBottom>
                     Login
