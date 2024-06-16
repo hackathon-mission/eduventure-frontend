@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import ListingDetails from "./pages/Listing";
 import Logout from "./pages/Logout";
+import AddListing from "./pages/AddListing";
 
 function App() {
     return (
@@ -37,8 +38,9 @@ function App() {
                     <Route path="/market" element={<Market />} />
                     <Route path="/adventure/:id" element={<Adventure />} />
                     <Route path="/profile/:id" element={<Profile />} />
-                    <Route path="/listing/:id" element={<ListingDetails/>} />
-                    <Route path="/logout" element={<Logout/>}/>
+                    <Route path="/listing/:id" element={<ListingDetails />} />
+                    <Route path="/logout" element={<Logout />} />
+                    <Route path="/addListing" element={<AddListing />} />
                     <Route
                         path="/login"
                         element={
